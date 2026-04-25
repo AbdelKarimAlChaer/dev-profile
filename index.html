@@ -3,144 +3,423 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karim – Entwicklerprofil</title>
+  <title>Karim — Entwicklerprofil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --bg: #0a0a0b;
+      --surface: #111114;
+      --surface-2: #17171c;
+      --border: #1f1f25;
+      --text: #ededf0;
+      --text-muted: #8a8a93;
+      --accent: #6366f1;
+      --accent-2: #8b5cf6;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 20px;
-      background-color: #1e1e1e;
-      color: #f0f0f0;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1, h2 {
-      text-align: center;
-      color: #00bfff;
-    }
-    .section {
-      margin-bottom: 40px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #00bfff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-right: 10px;
-      margin-bottom: 10px;
-      white-space: nowrap;
-    }
-    .btn:last-child {
-      margin-right: 0;
-    }
-    .downloads-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 10px;
-    }
-    canvas {
-      margin: 20px 0;
-      background-color: #2a2a2a;
-      border-radius: 8px;
-    }
-    ul {
-      list-style: none;
       padding: 0;
     }
-    li {
-      margin: 10px 0;
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
     }
-    a {
-      color: #87cefa;
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
     }
-    @media (max-width: 700px) {
-      .downloads-row {
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 48px 0 64px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .hero-portrait {
+      flex-shrink: 0;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 10%;
+      border: 2px solid var(--border);
+      box-shadow:
+        0 0 0 6px rgba(255,255,255,0.02),
+        0 20px 40px rgba(0,0,0,0.4),
+        0 0 60px var(--accent-glow);
+    }
+
+    .hero-text { flex: 1; min-width: 0; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      padding: 4px 12px;
+      background: var(--accent-glow);
+      border-radius: 999px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, #b4b4be 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 18px;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: all 0.18s ease;
+    }
+    .contact-link:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      color: #fff;
+      background: var(--surface-2);
+    }
+    .contact-link svg { color: var(--accent); flex-shrink: 0; }
+
+    /* Sections */
+    section { margin-bottom: 56px; }
+
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about p {
+      font-size: 16px;
+      color: #c4c4cc;
+      max-width: 720px;
+    }
+
+    /* Chart */
+    .chart-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s ease;
+    }
+    .chart-wrapper:hover { border-color: #2a2a32; }
+
+    .chart-wrapper { height: 520px; }
+    canvas { width: 100% !important; height: 100% !important; }
+    @media (max-width: 640px) {
+      .chart-wrapper { height: 420px; }
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--accent);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-content { position: relative; z-index: 1; min-width: 0; }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-meta { font-size: 12px; color: var(--text-muted); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .container { padding: 32px 20px 64px; }
+      .hero {
         flex-direction: column;
-        align-items: center;
-      }
-      .btn {
-        width: 90%;
         text-align: center;
+        gap: 24px;
+        padding: 24px 0 40px;
+        margin-bottom: 40px;
       }
+      .hero-portrait { width: 128px; height: 128px; }
+      section { margin-bottom: 40px; }
+      .chart-wrapper { padding: 16px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Entwicklerprofil – Karim</h1>
 
-    <div class="section">
+    <header class="hero">
+      <img src="./image.png" alt="Karim" class="hero-portrait">
+      <div class="hero-text">
+        <span class="eyebrow">Entwicklerprofil</span>
+        <h1>Karim Al Chaer</h1>
+        <p class="subtitle">Informatikmittelschule (3. Jahr) · Softwareentwicklung &amp; Webtechnologien</p>
+        <div class="contact">
+          <a class="contact-link" href="mailto:abdel-karim_al-chaer@mail.ch">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            abdel-karim_al-chaer@mail.ch
+          </a>
+          <a class="contact-link" href="tel:+4178250">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            +41 78 250 56 48
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="about">
       <h2>Über mich</h2>
       <p>
-        Ich bin aktuell im dritten Jahr der Informatikmittelschule (IMS) und interessiere mich leidenschaftlich für Softwareentwicklung, Systemadministration und moderne Webtechnologien.<br>
-        Während meiner Ausbildung konnte ich bereits vielfältige praktische Erfahrungen in verschiedenen Projekten sammeln, sowohl im Team als auch eigenständig. Besonders fasziniert mich die Entwicklung von effizienten und benutzerfreundlichen Anwendungen sowie das Lösen komplexer technischer Herausforderungen. Mein Ziel ist es, mein Wissen stetig zu erweitern und innovative Lösungen zu entwickeln, die einen echten Mehrwert bieten.
+        Ich bin aktuell im dritten Jahr der Informatikmittelschule und begeistere mich für Softwareentwicklung
+        und moderne Webtechnologien. Während meiner Ausbildung habe ich vielfältige praktische
+        Erfahrungen in eigenständigen und teamorientierten Projekten gesammelt. Besonders interessiere ich mich für
+        die Entwicklung effizienter, benutzerfreundlicher Anwendungen und das Lösen komplexer technischer Herausforderungen.
       </p>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Informatikkompetenzen</h2>
-      <canvas id="skillChart"></canvas>
-    </div>
+    <section>
+      <h2>Kompetenzen</h2>
+      <div class="chart-wrapper">
+        <canvas id="skillChart"></canvas>
+      </div>
+    </section>
 
-    <div class="section">
+    <section>
       <h2>Arbeitsbeispiele</h2>
-      <div class="downloads-row">
-        <a class="btn" href="./JavaParkhaussystem.zip" download>Java Parkhaus Projekt</a>
-        <a class="btn" href="./Buchadmin.zip" download>Buchmanagement Webapplikation</a>
-        <a class="btn" href="./M5stackMQTT.zip" download>M5stack MQTT IOT</a>
+      <div class="grid">
+        <a class="card" href="./JavaParkhaussystem.zip" download>
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-title">Java Parkhaussystem</div>
+            <div class="card-meta">ZIP · Download</div>
+          </div>
+        </a>
+        <a class="card" href="./Buchadmin.zip" download>
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-title">Buchmanagement Webapp</div>
+            <div class="card-meta">ZIP · Download</div>
+          </div>
+        </a>
+        <a class="card" href="./M5stackMQTT.zip" download>
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-title">M5Stack MQTT IoT</div>
+            <div class="card-meta">ZIP · Download</div>
+          </div>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Downloads</h2>
-      <div class="downloads-row" style="justify-content: center;">
-        <a class="btn" href="./Karim_CV.pdf" download>Lebenslauf herunterladen</a>
-        <a class="btn" href="./Modulnotenübersicht.pdf" download>Modulnotenübersicht herunterladen</a>
-        <a class="btn" href="./Sammelmappe1.pdf" download>Zeugnisse und weitere Dokumente</a>
+    <section>
+      <h2>Dokumente</h2>
+      <div class="grid">
+        <a class="card" href="./Karim_CV.pdf" download>
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-title">Lebenslauf</div>
+            <div class="card-meta">PDF · Download</div>
+          </div>
+        </a>
+        <a class="card" href="./Modulnotenübersicht.pdf" download>
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H1l8-8 8 8h-8v8l-8-8h8z" transform="rotate(90 12 12)"></path><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-title">Modulnotenübersicht</div>
+            <div class="card-meta">PDF · Download</div>
+          </div>
+        </a>
+        <a class="card" href="./Sammelmappe1.pdf" download>
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-title">Zeugnisse &amp; Dokumente</div>
+            <div class="card-meta">PDF · Download</div>
+          </div>
+        </a>
       </div>
-    </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Karim Al Chaer
+    </footer>
+  </div>
 
   <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     const ctx = document.getElementById('skillChart').getContext('2d');
-    const skillChart = new Chart(ctx, {
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, 520);
+    gradient.addColorStop(0, 'rgba(99, 102, 241, 0.95)');
+    gradient.addColorStop(1, 'rgba(139, 92, 246, 0.55)');
+
+    new Chart(ctx, {
       type: 'bar',
       data: {
         labels: [
           'HTML','CSS','Java','Python','PHP','C#','Rust','Lua',
           'VS Code','PyCharm','IntelliJ',
-          'MongoDB','MySQL','Windows','Kali Linux','Office 365','Docker',
-          'Internet of Things'
+          'MongoDB','MySQL','Windows','Kali Linux','Office 365','Docker','IoT'
         ],
         datasets: [{
-          label: 'Skill-Level (0–10)',
+          label: 'Skill-Level',
           data: [8,7,6,4,8,8,1,2,9,5,5,5,7,9,5,8,5,6],
-          backgroundColor: '#00bfff'
+          backgroundColor: gradient,
+          borderRadius: 6,
+          borderSkipped: false,
+          barThickness: 'flex',
+          maxBarThickness: 32
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true,
             max: 10,
-            ticks: { color: '#f0f0f0' },
-            grid: { color: '#444' }
+            ticks: { color: '#8a8a93', font: { family: 'Inter', size: 12 }, stepSize: 2 },
+            grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false }
           },
           x: {
-            ticks: { color: '#f0f0f0' },
-            grid: { color: '#444' }
+            ticks: { color: '#c4c4cc', font: { family: 'Inter', size: 11 }, maxRotation: 45, minRotation: 45 },
+            grid: { display: false }
           }
         },
         plugins: {
-          legend: {
-            labels: { color: '#f0f0f0' }
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#17171c',
+            borderColor: '#1f1f25',
+            borderWidth: 1,
+            titleColor: '#ededf0',
+            bodyColor: '#c4c4cc',
+            titleFont: { family: 'Inter', weight: '600' },
+            bodyFont: { family: 'Inter' },
+            padding: 12,
+            displayColors: false,
+            callbacks: { label: (ctx) => `${ctx.parsed.y} / 10` }
           }
         }
       }
@@ -148,4 +427,3 @@
   </script>
 </body>
 </html>
-
