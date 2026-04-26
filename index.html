@@ -230,6 +230,112 @@
     }
     .card-meta { font-size: 12px; color: var(--text-muted); }
 
+    /* Modules — collapsible per year */
+    details.year {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    details.year[open] { border-color: #2a2a32; }
+
+    details.year summary {
+      cursor: pointer;
+      padding: 18px 22px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+    details.year summary::-webkit-details-marker { display: none; }
+    details.year summary::after {
+      content: '';
+      margin-left: auto;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid var(--text-muted);
+      border-bottom: 2px solid var(--text-muted);
+      transform: rotate(45deg) translate(-2px, -2px);
+      transition: transform 0.2s ease;
+    }
+    details.year[open] summary::after {
+      transform: rotate(-135deg) translate(-2px, -2px);
+    }
+
+    .year-label { font-size: 15px; font-weight: 600; color: var(--text); }
+    .year-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+      padding: 3px 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 8px;
+      padding: 0 16px 18px;
+    }
+
+    .module-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 14px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .module-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(99, 102, 241, 0.35);
+      border-left-color: var(--accent);
+    }
+    .module-card.wpfl { border-left-color: var(--accent-2); }
+    .module-card.wpfl:hover { border-color: rgba(139, 92, 246, 0.35); }
+
+    .module-head {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .module-num { font-size: 17px; font-weight: 700; color: var(--text); }
+    .module-type { font-size: 11px; color: var(--text-muted); }
+    .module-version {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+    .module-title {
+      font-size: 12.5px;
+      color: #c4c4cc;
+      line-height: 1.4;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .legend i.pfl { background: var(--accent); }
+    .legend i.wpfl { background: var(--accent-2); }
+
     /* Footer */
     footer {
       text-align: center;
@@ -325,6 +431,78 @@
           </div>
         </a>
       </div>
+    </section>
+
+    <section>
+      <h2>Module — Applikationsentwicklung EFZ</h2>
+      <div class="legend">
+        <span><i class="pfl"></i> Pflichtmodul</span>
+        <span><i class="wpfl"></i> Wahlpflichtmodul</span>
+      </div>
+
+      <details class="year" open>
+        <summary><span class="year-label">1. Lehrjahr</span><span class="year-count">11 Module</span></summary>
+        <div class="module-grid">
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">106</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Datenbanken abfragen, bearbeiten und warten</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">117</span><span class="module-type">pfl</span><span class="module-version">V4</span></div><div class="module-title">Informatik- und Netzinfrastruktur für ein kleines Unternehmen realisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">122</span><span class="module-type">pfl</span><span class="module-version">V4</span></div><div class="module-title">Abläufe mit einer Scriptsprache automatisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">162</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Daten analysieren und modellieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">164</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Datenbanken erstellen und Daten einfügen</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">187</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">ICT-Arbeitsplatz mit Betriebssystem in Betrieb nehmen</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">216</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">Internet of Everything-Endgeräte in bestehende Plattform integrieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">231</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Datenschutz und Datensicherheit anwenden</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">293</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Webauftritt erstellen und veröffentlichen</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">319</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Applikationen entwerfen und implementieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">431</span><span class="module-type">pfl</span><span class="module-version">V3</span></div><div class="module-title">Aufträge im eigenen Berufsumfeld selbstständig durchführen</div></div>
+        </div>
+      </details>
+
+      <details class="year">
+        <summary><span class="year-label">2. Lehrjahr</span><span class="year-count">16 Module</span></summary>
+        <div class="module-grid">
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">107</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">ICT-Lösungen mit Blockchain Technologie umsetzen</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">109</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">Dienste in der Public Cloud betreiben und überwachen</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">114</span><span class="module-type">pfl</span><span class="module-version">V4</span></div><div class="module-title">Codierungs-, Kompressions- und Verschlüsselungsverfahren einsetzen</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">165</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">NoSQL-Datenbanken einsetzen</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">190</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">Virtualisierungsplattform aufbauen und betreiben</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">210</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">Public Cloud für Anwendungen nutzen</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">248</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">ICT-Lösungen mit aktuellen Technologien realisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">254</span><span class="module-type">pfl</span><span class="module-version">V3</span></div><div class="module-title">Geschäftsprozesse im eigenen Berufsumfeld beschreiben</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">259</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">ICT-Lösungen mit Machine Learning entwickeln</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">294</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Frontend einer interaktiven Webapplikation realisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">295</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Backend für Applikationen realisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">320</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Objektorientiert Programmieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">322</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Benutzerschnittstellen entwerfen und implementieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">346</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Cloud Lösungen konzipieren und realisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">347</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Dienst mit Container anwenden</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">426</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Software mit agilen Methoden entwickeln</div></div>
+        </div>
+      </details>
+
+      <details class="year">
+        <summary><span class="year-label">3. Lehrjahr</span><span class="year-count">9 Module</span></summary>
+        <div class="module-grid">
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">110</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">Daten mit Tools analysieren und darstellen</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">183</span><span class="module-type">pfl</span><span class="module-version">V3</span></div><div class="module-title">Applikationssicherheit implementieren</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">185</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">Sicherheitsmassnahmen für KMU IT analysieren &amp; implementieren</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">217</span><span class="module-type">wpfl</span><span class="module-version">V1</span></div><div class="module-title">Service für Internet of Everything konzipieren, planen und aufbauen</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">223</span><span class="module-type">wpfl</span><span class="module-version">V3</span></div><div class="module-title">Multi-User-Applikationen objektorientiert realisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">306</span><span class="module-type">pfl</span><span class="module-version">V4</span></div><div class="module-title">Kleinprojekte im eigenen Berufsumfeld abwickeln</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">323</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Funktional Programmieren</div></div>
+          <div class="module-card wpfl"><div class="module-head"><span class="module-num">335</span><span class="module-type">wpfl</span><span class="module-version">V3</span></div><div class="module-title">Mobile-Applikation realisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">450</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Applikationen testen</div></div>
+        </div>
+      </details>
+
+      <details class="year">
+        <summary><span class="year-label">4. Lehrjahr</span><span class="year-count">4 Module</span></summary>
+        <div class="module-grid">
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">241</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Innovative ICT-Lösungen initialisieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">245</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Innovative ICT-Lösungen umsetzen</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">321</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">Verteilte Systeme programmieren</div></div>
+          <div class="module-card pfl"><div class="module-head"><span class="module-num">324</span><span class="module-type">pfl</span><span class="module-version">V1</span></div><div class="module-title">DevOps-Prozesse mit Tools unterstützen</div></div>
+        </div>
+      </details>
     </section>
 
     <section>
